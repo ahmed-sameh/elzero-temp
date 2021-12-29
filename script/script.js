@@ -68,6 +68,47 @@ function renderVideos()
 
 renderVideos();
 
+
+
+
+// function that render the event countdown
+
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minsEl = document.getElementById('mins');
+const secsEl = document.getElementById('secs');
+
+const endEventDate = '1 April 2022';
+
+function countDownHandler() {
+  const startDate = new Date();
+  const endDate = new Date(endEventDate);
+  const totalSeconds = endDate - startDate;
+  
+   // i google it 
+  const days = Math.floor(totalSeconds / 86400000);
+  const hours = Math.floor(totalSeconds / 3600000) % 24;
+  const mins = Math.floor(totalSeconds / 60000) %60;
+  const secs = Math.floor(totalSeconds / 1000) % 60;
+
+
+  const formateTime = time => {
+    if(time<10) {
+      return `0${time}`
+    }else {return time}
+  }
+
+
+  daysEl.innerText = formateTime(days);
+  hoursEl.innerText = formateTime(hours);
+  minsEl.innerText = formateTime(mins);
+  secsEl.innerText = formateTime(secs);
+
+}
+
+setInterval(countDownHandler,1000);
+
+
 // event listners
 
 otherLinkButton.addEventListener('click', () => {
